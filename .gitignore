@@ -1,0 +1,6 @@
+# Dependencies
+node_modules
+
+# Environments
+.env
+.env.test
