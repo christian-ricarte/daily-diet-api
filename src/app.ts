@@ -1,8 +1,23 @@
 import fastify from 'fastify'
-import { usersRoutes } from './routes/users'
+import { authRoutes } from './routes/auth'
+import cookie from '@fastify/cookie'
+import jwt from '@fastify/jwt'
+import { dietsRoutes } from './routes/diets'
 
 export const app = fastify()
 
-app.register(usersRoutes, {
-  prefix: 'users',
+app.register(cookie)
+app.register(jwt, {
+  secret: 'teste',
+  cookie: {
+    cookieName: 'token',
+    signed: false,
+  },
+})
+
+app.register(authRoutes, {
+  prefix: 'auth',
+})
+app.register(dietsRoutes, {
+  prefix: 'diets',
 })
